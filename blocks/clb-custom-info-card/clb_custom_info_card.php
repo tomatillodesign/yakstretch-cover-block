@@ -53,11 +53,11 @@ if( $card_type == 'photo' ) {
 
 // setup color work in case of custom colors, check for readability and contrast
 $theme_primary_color = get_field('primary_color', 'option');
-$primary_hsl_array = hex2hsl( $theme_primary_color );
+$primary_hsl_array = clb_hex2hsl_020582308( $theme_primary_color );
 $h = $primary_hsl_array['h'];
 $s = $primary_hsl_array['s'];
 $l = 5;
-$theme_black_rgb_array = hslToRgb($h, $s, $l);
+$theme_black_rgb_array = clb_hslToRgb_020582308($h, $s, $l);
 $theme_black_r = round(intval($theme_black_rgb_array['r']));
 $theme_black_g = round(intval($theme_black_rgb_array['g']));
 $theme_black_b = round(intval($theme_black_rgb_array['b']));
