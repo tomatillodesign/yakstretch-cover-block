@@ -707,3 +707,56 @@ if( function_exists('acf_add_local_field_group') ):
     ));
     
     endif;		
+
+
+
+
+
+
+function clb_hex2hsl_020582308($hexstr) {
+        $hexstr = ltrim($hexstr, '#');
+        if (strlen($hexstr) == 3) {
+            $hexstr = $hexstr[0] . $hexstr[0] . $hexstr[1] . $hexstr[1] . $hexstr[2] . $hexstr[2];
+        }
+        $R = hexdec($hexstr[0] . $hexstr[1]);
+        $G = hexdec($hexstr[2] . $hexstr[3]);
+        $B = hexdec($hexstr[4] . $hexstr[5]);
+        $RGB = array($R,$G,$B);
+//scale value 0 to 255 to floats from 0 to 1
+        $r = $RGB[0]/255;
+        $g = $RGB[1]/255;
+        $b = $RGB[2]/255;
+        // using https://gist.github.com/brandonheyer/5254516
+        $max = max( $r, $g, $b );
+        $min = min( $r, $g, $b );
+        // lum
+        $l = ( $max + $min ) / 2;
+
+        // sat
+        $d = $max - $min;
+        if( $d == 0 ){
+            $h = $s = 0; // achromatic
+        } else {
+            $s = $d / ( 1 - abs( (2 * $l) - 1 ) );
+            // hue
+            switch( $max ){
+                case $r:
+                    $h = 60 * fmod( ( ( $g - $b ) / $d ), 6 );
+                    if ($b > $g) {
+                        $h += 360;
+                    }
+                    break;
+                case $g:
+                    $h = 60 * ( ( $b - $r ) / $d + 2 );
+                    break;
+                case $b:
+                    $h = 60 * ( ( $r - $g ) / $d + 4 );
+                    break;
+            }
+        }
+        $hsl = array( 'h' => round( $h ), 's' => round( $s*100 ), 'l' => round( $l*100 ) );
+        //$hslstr = 'hsl('.($hsl[0]).','.($hsl[1]).'%,'.($hsl[2]).'%)';
+        return $hsl;
+// or return the $hsl array if you want to make adjustments to values
+    }
+
