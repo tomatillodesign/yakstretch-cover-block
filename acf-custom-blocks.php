@@ -975,3 +975,24 @@ function hueToRgb($temp1, $temp2, $hue) {
     }
 
 
+
+// Source: https://www.splitbrain.org/blog/2008-09/18-calculating_color_contrast_with_php
+// Use PHP to help automatically determine color contrasts
+function lumdiff($R1,$G1,$B1,$R2,$G2,$B2){
+    $L1 = 0.2126 * pow($R1/255, 2.2) +
+          0.7152 * pow($G1/255, 2.2) +
+          0.0722 * pow($B1/255, 2.2);
+ 
+    $L2 = 0.2126 * pow($R2/255, 2.2) +
+          0.7152 * pow($G2/255, 2.2) +
+          0.0722 * pow($B2/255, 2.2);
+ 
+    if($L1 > $L2){
+        return ($L1+0.05) / ($L2+0.05);
+    }else{
+        return ($L2+0.05) / ($L1+0.05);
+    }
+}
+
+
+
