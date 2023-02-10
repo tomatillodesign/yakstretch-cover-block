@@ -149,6 +149,7 @@ if( function_exists('acf_add_local_field_group') ):
                         'choices' => array(
                             'icon' => 'Icon',
                             'photo' => 'Photo',
+                            'text' => 'Text',
                         ),
                         'default_value' => '',
                         'return_format' => 'value',
