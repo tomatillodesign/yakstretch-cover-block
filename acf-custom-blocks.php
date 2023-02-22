@@ -953,7 +953,7 @@ function hueToRgb2222023411($temp1, $temp2, $hue) {
      * pound sign).  Rounded to the nearest whole
      * number.
     */
-    function hslToHex($h, $s, $l, $prependPound = true) {
+    function hslToHex2222023411($h, $s, $l, $prependPound = true) {
         //convert hsl to rgb
         $rgb = hslToRgb($h,$s,$l);
 
@@ -1018,7 +1018,7 @@ function hueToRgb2222023411($temp1, $temp2, $hue) {
 
 // Source: https://www.splitbrain.org/blog/2008-09/18-calculating_color_contrast_with_php
 // Use PHP to help automatically determine color contrasts
-function lumdiff($R1,$G1,$B1,$R2,$G2,$B2){
+function lumdiff2222023411($R1,$G1,$B1,$R2,$G2,$B2){
     $L1 = 0.2126 * pow($R1/255, 2.2) +
           0.7152 * pow($G1/255, 2.2) +
           0.0722 * pow($B1/255, 2.2);

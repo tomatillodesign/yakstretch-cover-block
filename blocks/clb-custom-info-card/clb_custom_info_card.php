@@ -89,8 +89,8 @@ if( $card_background_color_array_sum > 0 ) {
     $card_background_color_style = ' style="background-color: ' . $card_background_color_string . ';"'; 
     $class_name .= ' clb-info-cards-override-card-background-color';
     
-    $lumdiff_to_black = lumdiff($card_background_color['red'],$card_background_color['green'],$card_background_color['blue'],$theme_black_r,$theme_black_g,$theme_black_b);
-    $lumdiff_to_white = lumdiff($card_background_color['red'],$card_background_color['green'],$card_background_color['blue'],255,255,255);
+    $lumdiff_to_black = lumdiff2222023411($card_background_color['red'],$card_background_color['green'],$card_background_color['blue'],$theme_black_r,$theme_black_g,$theme_black_b);
+    $lumdiff_to_white = lumdiff2222023411($card_background_color['red'],$card_background_color['green'],$card_background_color['blue'],255,255,255);
     
     if( $lumdiff_to_black >= 5 ) {
         $class_name .= ' clb-info-cards-override-card-foreground-color clb-foreground-dark';
@@ -113,8 +113,8 @@ if( $button_background_color_array_sum > 0 ) {
     $button_background_color_style = ' style="background-color: ' . $button_background_color_string . ';"';
     $class_name .= ' clb-info-cards-override-button-background-color';
 
-    $button_lumdiff_to_black = lumdiff($button_background_color['red'],$button_background_color['green'],$button_background_color['blue'],$theme_black_r,$theme_black_g,$theme_black_b);
-    $button_lumdiff_to_white = lumdiff($button_background_color['red'],$button_background_color['green'],$button_background_color['blue'],255,255,255);
+    $button_lumdiff_to_black = lumdiff2222023411($button_background_color['red'],$button_background_color['green'],$button_background_color['blue'],$theme_black_r,$theme_black_g,$theme_black_b);
+    $button_lumdiff_to_white = lumdiff2222023411($button_background_color['red'],$button_background_color['green'],$button_background_color['blue'],255,255,255);
 
     if( $button_lumdiff_to_black >= 5 ) {
         $class_name .= ' clb-info-cards-override-card-button-foreground-color clb-button-foreground-dark';
