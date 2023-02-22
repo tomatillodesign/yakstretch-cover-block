@@ -813,7 +813,7 @@ function clb_hex2hsl_020582308($hexstr) {
      *
      * hslToRgb calls this by default.
     */
-    function degPercPercToHsl($h, $s, $l) {
+    function degPercPercToHsl2222023411($h, $s, $l) {
         //convert h, s, and l back to the 0-1 range
 
         //convert the hue's 360 degrees in a circle to 1
@@ -852,7 +852,7 @@ function clb_hex2hsl_020582308($hexstr) {
      * @param   Number  l       The luminence
      * @return  Array           The RGB representation
      */
-    function hslToRgb($h, $s, $l){
+    function hslToRgb2222023411($h, $s, $l){
         $hsl = degPercPercToHsl($h, $s, $l);
         $h = $hsl['h'];
         $s = $hsl['s'];
@@ -913,7 +913,7 @@ function clb_hex2hsl_020582308($hexstr) {
  * http://www.easyrgb.com/index.php?X=MATH&$h=19#text19
  *
 */
-function hueToRgb($temp1, $temp2, $hue) {
+function hueToRgb2222023411($temp1, $temp2, $hue) {
     if ($hue < 0) {
         $hue += 1;
     }

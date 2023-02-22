@@ -67,7 +67,7 @@ if( $theme_primary_color ) {
     $s = $primary_hsl_array['s'];
     $l = 5;
 
-    $theme_black_rgb_array = hueToRgb($h, $s, $l);
+    $theme_black_rgb_array = hueToRgb2222023411($h, $s, $l);
     $theme_black_r = round(intval($theme_black_rgb_array['r']));
     $theme_black_g = round(intval($theme_black_rgb_array['g']));
     $theme_black_b = round(intval($theme_black_rgb_array['b']));
