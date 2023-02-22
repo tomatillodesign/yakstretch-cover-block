@@ -33,6 +33,9 @@ $card_group_settings = get_field('td_info_cards_settings_group');
 $number_of_columns = $card_group_settings['td_info_cards_number_of_columns'];
 if( $number_of_columns ) { $class_name .= ' clb-columns-' . $number_of_columns; }
 
+$td_info_cards_single_column_layout = $card_group_settings['td_info_cards_single_column_layout'];
+if( $number_of_columns == 1 && $td_info_cards_single_column_layout ) { $class_name .= ' clb-single-column-layout-' . $td_info_cards_single_column_layout; }
+
 $card_type = $card_group_settings['td_info_cards_type'];
 if( $card_type ) { $class_name .= ' clb-info-card-type-' . $card_type; }
 
@@ -53,19 +56,32 @@ if( $card_type == 'photo' ) {
 
 // setup color work in case of custom colors, check for readability and contrast
 $theme_primary_color = get_field('primary_color', 'option');
-$primary_hsl_array = clb_hex2hsl_020582308( $theme_primary_color );
-$h = $primary_hsl_array['h'];
-$s = $primary_hsl_array['s'];
-$l = 5;
-$theme_black_rgb_array = hueToRgb($h, $s, $l);
-$theme_black_r = round(intval($theme_black_rgb_array['r']));
-$theme_black_g = round(intval($theme_black_rgb_array['g']));
-$theme_black_b = round(intval($theme_black_rgb_array['b']));
+if( $theme_primary_color ) {
+
+    $primary_hsl_array = clb_hex2hsl_020582308( $theme_primary_color );
+    $h = $primary_hsl_array['h'];
+    $s = $primary_hsl_array['s'];
+    $l = 5;
+
+    $theme_black_rgb_array = hueToRgb($h, $s, $l);
+    $theme_black_r = round(intval($theme_black_rgb_array['r']));
+    $theme_black_g = round(intval($theme_black_rgb_array['g']));
+    $theme_black_b = round(intval($theme_black_rgb_array['b']));
+
+
+
+}
+if( !$theme_primary_color ) {
+    $theme_black_r = 34;
+    $theme_black_g = 34;
+    $theme_black_b = 34;
+}
 
 // background colors
 $card_background_color_style = null;
 $card_background_color = $card_group_settings['td_info_cards_card_background'];
 $card_background_color_array_sum = array_sum($card_background_color);
+
 if( $card_background_color_array_sum > 0 ) {
     $card_background_color_string = 'rgba(' . $card_background_color['red'] . ',' . $card_background_color['green'] . ',' . $card_background_color['blue'] . ',' . $card_background_color['alpha'] . ')';
     $card_background_color_style = ' style="background-color: ' . $card_background_color_string . ';"'; 
@@ -76,10 +92,10 @@ if( $card_background_color_array_sum > 0 ) {
     
     if( $lumdiff_to_black >= 5 ) {
         $class_name .= ' clb-info-cards-override-card-foreground-color clb-foreground-dark';
-        $card_collection_styles .= '--ironwood-card-body-color: var(--ironwood-black);';
+        $card_collection_styles .= '--ironwood-card-body-color: var(--ironwood-black, #222);';
     } elseif ( $lumdiff_to_white >= 5 ) {
         $class_name .= ' clb-info-cards-override-card-foreground-color clb-foreground-light';
-        $card_collection_styles .= '--ironwood-card-body-color: var(--ironwood-white);';
+        $card_collection_styles .= '--ironwood-card-body-color: var(--ironwood-white, #fff);';
     }
     
     $card_data .= ' data-clb-card-lumdiff-to-black="' . $lumdiff_to_black . '"';
@@ -100,10 +116,10 @@ if( $button_background_color_array_sum > 0 ) {
 
     if( $button_lumdiff_to_black >= 5 ) {
         $class_name .= ' clb-info-cards-override-card-button-foreground-color clb-button-foreground-dark';
-        $card_collection_styles .= '--ironwood-card-button-text-color: var(--ironwood-black);';
+        $card_collection_styles .= '--ironwood-card-button-text-color: var(--ironwood-black, #222);';
     } elseif ( $button_lumdiff_to_white >= 5 ) {
         $class_name .= ' clb-info-cards-override-card-button-foreground-color clb-button-foreground-light';
-        $card_collection_styles .= '--ironwood-card-button-text-color: var(--ironwood-white);';
+        $card_collection_styles .= '--ironwood-card-button-text-color: var(--ironwood-white, #fff);';
     }
 
     $card_data .= ' data-clb-card-button-lumdiff-to-black="' . $button_lumdiff_to_black . '"';

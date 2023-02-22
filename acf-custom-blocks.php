@@ -133,6 +133,37 @@ if( function_exists('acf_add_local_field_group') ):
                         'layout' => 'horizontal',
                     ),
                     array(
+                        'key' => 'field_637e299dcdz04',
+                        'label' => 'Layout',
+                        'name' => 'td_info_cards_single_column_layout',
+                        'aria-label' => '',
+                        'type' => 'button_group',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => array(
+                            array(
+                                array(
+                                    'field' => 'field_637e26ceca8b3',
+                                    'operator' => '==',
+                                    'value' => 1,
+                                ),
+                            ),
+                        ),
+                        'wrapper' => array(
+                            'width' => '50',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'choices' => array(
+                            'horizontal' => 'Horizontal',
+                            'full_size' => 'Full Size',
+                        ),
+                        'default_value' => 'horizontal',
+                        'return_format' => 'value',
+                        'allow_null' => 0,
+                        'layout' => 'horizontal',
+                    ),
+                    array(
                         'key' => 'field_637e271af8dd7',
                         'label' => 'Card Type',
                         'name' => 'td_info_cards_type',
@@ -388,7 +419,7 @@ if( function_exists('acf_add_local_field_group') ):
                         'name' => 'card_action',
                         'aria-label' => '',
                         'type' => 'button_group',
-                        'instructions' => 'Modal will display the "Description" field in the pop-up.',
+                        'instructions' => 'Modal and Collapse cards will display the "Description" field upon clicking.',
                         'required' => 0,
                         'conditional_logic' => 0,
                         'wrapper' => array(
@@ -399,6 +430,7 @@ if( function_exists('acf_add_local_field_group') ):
                         'choices' => array(
                             'default' => 'Default',
                             'modal' => 'Modal (Pop-up)',
+                            'collapse' => 'Collapse',
                         ),
                         'default_value' => 'default',
                         'return_format' => 'value',
@@ -614,6 +646,13 @@ if( function_exists('acf_add_local_field_group') ):
                                     'field' => 'field_637e3ff9bb890',
                                     'operator' => '==',
                                     'value' => 'modal',
+                                ),
+                            ),
+                            array(
+                                array(
+                                    'field' => 'field_637e3ff9bb890',
+                                    'operator' => '==',
+                                    'value' => 'collapse',
                                 ),
                             ),
                         ),

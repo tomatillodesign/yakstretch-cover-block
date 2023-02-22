@@ -8,8 +8,9 @@
 }
 
 .clb-single-info-card-wrapper {
-    border-radius: var(--ironwood-border-radius);
-    box-shadow: var(--ironwood-box-shadow-light);
+    background: var(--ironwood-white, #fff);
+    border-radius: var(--ironwood-border-radius, 3px);
+    box-shadow: var(--ironwood-box-shadow-light, 0 0 20px rgba(0,0,0,.1));
     will-change: transform;
     transition: all ease-in-out .25s;
 }
@@ -63,20 +64,21 @@ button.clb-single-info-card-cta-button {
 }
 
 .clb-info-cards-override-card-button-foreground-color button.clb-single-info-card-cta-button a {
-    color: var(--ironwood-card-button-text-color);
+    color: var(--ironwood-card-button-text-color, #fff);
 }
 
 .clb-info-cards-override-card-button-foreground-color button.clb-single-info-card-cta-button:hover a {
-    color: var(--ironwood-white);
+    color: var(--ironwood-white, #fff);
 }
 
 .clb-info-cards-override-button-background-color button.clb-single-info-card-cta-button:hover {
-    background: var(--ironwood-black) !important;
+    background: var(--ironwood-black, #222) !important;
     /* color: var(--ironwood-white) !important; */
 }
 
-
-h3.clb-single-info-card-heading {
+.clb-single-info-card-body-wrapper h3.clb-single-info-card-heading {
+    margin: 0;
+    padding: 0;
     margin-bottom: 0;
     line-height: 1.2;
     text-align: center;
@@ -110,7 +112,7 @@ h3.clb-single-info-card-heading {
 }
 
 .clb-info-card-type-icon .clb-single-info-card-button-flex-wrapper > a {
-    color: var(--ironwood-black);
+    color: var(--ironwood-black, #222);
 }
 
 .clb-info-cards-override-card-background-color .clb-single-info-card-heading a,
@@ -119,7 +121,7 @@ h3.clb-single-info-card-heading {
 .clb-info-cards-override-card-background-color .clb-single-info-card-description-wrapper,
 .clb-info-cards-override-card-background-color .clb-single-info-card-subheading,
 .clb-info-cards-override-card-background-color.clb-info-card-type-icon .clb-single-info-card-button-flex-wrapper > a {  
-    color: var(--ironwood-card-body-color);
+    color: var(--ironwood-card-body-color, #222);
 }
 
 .modal .clb-single-info-card-description-wrapper {
