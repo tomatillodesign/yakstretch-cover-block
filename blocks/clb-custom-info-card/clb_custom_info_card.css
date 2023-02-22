@@ -5,6 +5,9 @@
     grid-template-columns: 1fr;
     gap: 20px;
     margin-bottom: 30px;
+
+    container-type: inline-size;
+    container-name: infoCardWrapperWidth;
 }
 
 .clb-single-info-card-wrapper {
@@ -29,10 +32,16 @@
 }
 
 .clb-single-info-card-image-wrapper img {
+    border-top-left-radius: var(--ironwood-border-radius, 3px);
+    border-top-right-radius: var(--ironwood-border-radius, 3px);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     object-fit: cover;
     width: 100%;
+}
+
+.clb-single-info-card-button-wrapper button {
+    border-radius: var(--ironwood-border-radius, 3px);
 }
 
 /* ---- Enforce aspect ratios ---- */
@@ -132,7 +141,33 @@ button.clb-single-info-card-cta-button {
     margin-bottom: 0;
 }
 
+
+/* --- CSS Container Query --- */
+@container infoCardWrapperWidth (min-width: 600px) {
+    
+    .clb-single-column-layout-horizontal .clb-single-info-card-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 30px;
+    }
+
+    .clb-single-column-layout-horizontal .clb-single-info-card-image-wrapper img {
+        height: 100% !important;
+        object-fit: cover;
+        border-radius: 0;
+        border-top-left-radius: var(--ironwood-border-radius, 3px);
+        border-bottom-left-radius: var(--ironwood-border-radius, 3px);
+    }
+
+}
+
+
+
 @media only screen and (min-width: 960px) { 
+
+    .clb-custom-info-card-area-wrapper.clb-columns-1 {
+        grid-template-columns: 1fr;
+    }
 
     .clb-custom-info-card-area-wrapper.clb-columns-2 {
         grid-template-columns: 1fr 1fr;
@@ -160,6 +195,10 @@ button.clb-single-info-card-cta-button {
 
     .clb-custom-info-card-area-wrapper {
       grid-template-columns: 1fr 1fr;
+    }
+
+    .clb-custom-info-card-area-wrapper.clb-columns-1 {
+        grid-template-columns: 1fr;
     }
 
   }

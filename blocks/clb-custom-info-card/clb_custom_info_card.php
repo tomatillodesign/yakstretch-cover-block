@@ -26,6 +26,7 @@ if ( ! empty( $block['align'] ) ) {
 $card_data = null;
 $modals_to_publish = null;
 $card_collection_styles = null;
+$horizontal_layout = false;
 
 // card group settings
 $card_group_settings = get_field('td_info_cards_settings_group');
@@ -34,7 +35,10 @@ $number_of_columns = $card_group_settings['td_info_cards_number_of_columns'];
 if( $number_of_columns ) { $class_name .= ' clb-columns-' . $number_of_columns; }
 
 $td_info_cards_single_column_layout = $card_group_settings['td_info_cards_single_column_layout'];
-if( $number_of_columns == 1 && $td_info_cards_single_column_layout ) { $class_name .= ' clb-single-column-layout-' . $td_info_cards_single_column_layout; }
+if( $number_of_columns == 1 && $td_info_cards_single_column_layout ) { 
+    $class_name .= ' clb-single-column-layout-' . $td_info_cards_single_column_layout; 
+    $horizontal_layout = true;
+}
 
 $card_type = $card_group_settings['td_info_cards_type'];
 if( $card_type ) { $class_name .= ' clb-info-card-type-' . $card_type; }
@@ -67,8 +71,6 @@ if( $theme_primary_color ) {
     $theme_black_r = round(intval($theme_black_rgb_array['r']));
     $theme_black_g = round(intval($theme_black_rgb_array['g']));
     $theme_black_b = round(intval($theme_black_rgb_array['b']));
-
-
 
 }
 if( !$theme_primary_color ) {
@@ -211,7 +213,18 @@ if( have_rows('td_info_cards_repeater') ) {
             }
         }
 
-        $block_to_publish .= '<div class="clb-single-info-card-wrapper' . $single_card_custom_classes . '" ' . $card_background_color_style . '>
+        if( $horizontal_layout ) {
+
+            $block_to_publish .= '<div class="clb-single-info-card-wrapper' . $single_card_custom_classes . '" ' . $card_background_color_style . '>
+                                    ' . $card_link_href . $card_image_to_publish . $card_icon_to_publish . $card_link_closing . '
+                                    <div class="clb-single-info-card-body-wrapper">
+                                    ' . $card_heading_to_publish . $card_subheading_to_publish . $card_description_to_publish . $card_button_to_publish . '
+                                    </div>
+                            </div>';
+
+        } else {
+
+            $block_to_publish .= '<div class="clb-single-info-card-wrapper' . $single_card_custom_classes . '" ' . $card_background_color_style . '>
                                 <div class="clb-single-info-card-button-flex-wrapper">
                                     ' . $card_link_href . $card_image_to_publish . $card_icon_to_publish . $card_link_closing . '
                                     <div class="clb-single-info-card-body-wrapper">
@@ -220,6 +233,10 @@ if( have_rows('td_info_cards_repeater') ) {
                                 ' . $card_button_to_publish . '
                                 </div>
                             </div>';
+
+        }
+
+        
 
         if( $card_is_modal ) {
         $modals_to_publish .= '<!-- Modal -->
