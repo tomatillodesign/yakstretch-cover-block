@@ -16,11 +16,18 @@
     box-shadow: var(--ironwood-box-shadow-light, 0 0 20px rgba(0,0,0,.1));
     will-change: transform;
     transition: all ease-in-out .25s;
+    z-index: 100;
+    position: relative;
 }
 
 .clb-single-info-card-wrapper:hover {
     -webkit-transform: translate3d(0, -4px, 0);
     transform: translate3d(0, -4px, 0);
+}
+
+.clb-single-info-card-wrapper.clb-info-card-is-collapse:hover {
+    -webkit-transform: none;
+    transform: none;
 }
 
 .clb-single-info-card-wrapper.clb-info-card-missing-link:hover {
@@ -141,6 +148,37 @@ button.clb-single-info-card-cta-button {
     margin-bottom: 0;
 }
 
+.clb-collapsible-wrapper {
+    padding: 20px;
+    background: var(--ironwood-white, #fff);
+    border-radius: var(--ironwood-border-radius, 3px);
+    box-shadow: var(--ironwood-box-shadow-light, 0 0 20px rgba(0,0,0,.1));
+    will-change: transform;
+    transition: all ease-in-out .5s;
+    margin-top: 0;
+    z-index: 10;
+    max-height: fit-content;
+    overflow: hidden;
+    padding: 20px;
+    transform-origin: top left;
+}
+
+.clb-collapsible-wrapper p:last-of-type {
+    margin-bottom: 0;
+}
+
+.clb-collapsible-wrapper.collapsed {
+    padding-top: 0;
+    padding-bottom: 0;
+    max-height: 0;
+    transform: scaleY(0);
+    overflow-y: hidden;
+}
+
+.clb-collapsible-wrapper.open {
+    
+}
+
 
 /* --- CSS Container Query --- */
 @container infoCardWrapperWidth (min-width: 600px) {
@@ -149,6 +187,10 @@ button.clb-single-info-card-cta-button {
         display: grid;
         grid-template-columns: 1fr 3fr;
         gap: 30px;
+    }
+
+    .clb-single-column-layout-horizontal .clb-single-info-card-image-wrapper {
+        height: 100%;
     }
 
     .clb-single-column-layout-horizontal .clb-single-info-card-image-wrapper img {

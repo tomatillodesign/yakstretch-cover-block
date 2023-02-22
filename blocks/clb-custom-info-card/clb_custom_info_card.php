@@ -155,6 +155,7 @@ if( have_rows('td_info_cards_repeater') ) {
         $card_link_href = null;
         $card_link_closing = null;
         $card_is_modal = false;
+        $card_is_collapse = false;
         $modal_ref = null;
         $card_button_to_publish = null;
         $single_card_custom_classes = null;
@@ -165,6 +166,12 @@ if( have_rows('td_info_cards_repeater') ) {
             $modal_ref = uniqid() . rand(1000, 100000);
             $card_link_href = '<a href="#ironwood-modal-' . $modal_ref . '" data-bs-toggle="modal" data-bs-target="#ironwood-modal-' . $modal_ref . '">';
             $card_link_closing = '</a>';
+        } elseif( $card_action == 'collapse' ) {
+            $card_is_collapse = true;
+            $modal_ref = uniqid() . rand(1000, 100000);
+            $card_link_href = '<a href="#ironwood-collapse-' . $modal_ref . '" data-bs-toggle="collapse" data-bs-target="#ironwood-collapse-' . $modal_ref . '" onclick="event.preventDefault(); document.getElementById(\'ironwood-collapse-' . $modal_ref . '\').classList.toggle(\'collapsed\');">';
+            $card_link_closing = '</a>';
+            $single_card_custom_classes .= ' clb-info-card-is-collapse';
         } elseif( $card_action == 'default' ) {
             $card_link = get_sub_field('card_link');
             if( $card_link ) {
@@ -192,9 +199,16 @@ if( have_rows('td_info_cards_repeater') ) {
         if( $card_subheading && $card_subheaders ) { $card_subheading_to_publish = '<div class="clb-single-info-card-subheading">' . $card_subheading . '</div>'; }
 
         $card_description = get_sub_field('card_description');
+
+        // create collapsible markup
+        $collapsible_markup = null;
+        if( $card_is_collapse ) {
+            $collapsible_markup = '<div id="ironwood-collapse-' . $modal_ref . '" class="clb-collapsible-wrapper collapsed">' . $card_description . '</div>';
+        }
+
         if( ($card_description && $card_descriptions) || ($card_description && $card_is_modal) ) {
             $card_description_to_publish = '<div class="clb-single-info-card-description-wrapper">' . $card_description . '</div>';
-            if( $card_is_modal ) {
+            if( $card_is_modal || $card_is_collapse ) {
                 $modal_description_to_publish = $card_description_to_publish;
                 $card_description_to_publish = null;
             } 
@@ -215,16 +229,20 @@ if( have_rows('td_info_cards_repeater') ) {
 
         if( $horizontal_layout ) {
 
-            $block_to_publish .= '<div class="clb-single-info-card-wrapper' . $single_card_custom_classes . '" ' . $card_background_color_style . '>
+            $block_to_publish .= '<div class="clb-info-card-outer-wrapper">
+                                    <div class="clb-single-info-card-wrapper' . $single_card_custom_classes . '" ' . $card_background_color_style . '>
                                     ' . $card_link_href . $card_image_to_publish . $card_icon_to_publish . $card_link_closing . '
                                     <div class="clb-single-info-card-body-wrapper">
                                     ' . $card_heading_to_publish . $card_subheading_to_publish . $card_description_to_publish . $card_button_to_publish . '
                                     </div>
-                            </div>';
+                                </div>'
+                                . $collapsible_markup
+                                . '</div>';
 
         } else {
 
-            $block_to_publish .= '<div class="clb-single-info-card-wrapper' . $single_card_custom_classes . '" ' . $card_background_color_style . '>
+            $block_to_publish .= '<div class="clb-info-card-outer-wrapper">
+                                <div class="clb-single-info-card-wrapper' . $single_card_custom_classes . '" ' . $card_background_color_style . '>
                                 <div class="clb-single-info-card-button-flex-wrapper">
                                     ' . $card_link_href . $card_image_to_publish . $card_icon_to_publish . $card_link_closing . '
                                     <div class="clb-single-info-card-body-wrapper">
@@ -232,7 +250,7 @@ if( have_rows('td_info_cards_repeater') ) {
                                     </div>
                                 ' . $card_button_to_publish . '
                                 </div>
-                            </div>';
+                            </div>' . $collapsible_markup . '</div>';
 
         }
 
