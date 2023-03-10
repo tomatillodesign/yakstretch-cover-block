@@ -218,6 +218,12 @@ button.clb-single-info-card-cta-button {
         border-bottom-left-radius: var(--ironwood-border-radius, 3px);
     }
 
+    .clb-single-column-layout-horizontal .clb-single-info-card-body-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
 }
 
 

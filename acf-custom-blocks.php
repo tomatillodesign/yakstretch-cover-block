@@ -276,6 +276,7 @@ if( function_exists('acf_add_local_field_group') ):
                             169 => '16:9',
                             23 => '2:3',
                             34 => '3:4',
+                            0 => 'Original',
                         ),
                         'default_value' => '',
                         'return_format' => 'value',
