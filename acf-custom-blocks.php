@@ -4,7 +4,7 @@ Plugin Name: Tomatillo Design ~ Custom Info Card
 Description: Create custom blocks and run all of your code here. Requires Advanced Custom Fields PRO.
 Author: Chris Liu-Beers, Tomatillo Design
 Author URI: http://www.tomatillodesign.com
-Version: 2.1
+Version: 2.2
 License: GPL v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 */
