@@ -4,7 +4,7 @@ Plugin Name: Tomatillo Design ~ Custom Info Card
 Description: Create custom blocks and run all of your code here. Requires Advanced Custom Fields PRO.
 Author: Chris Liu-Beers, Tomatillo Design
 Author URI: http://www.tomatillodesign.com
-Version: 2.2
+Version: 2.3
 License: GPL v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 */
@@ -180,6 +180,7 @@ if( function_exists('acf_add_local_field_group') ):
                         'choices' => array(
                             'icon' => 'Icon',
                             'photo' => 'Photo',
+                            'cover' => 'Cover',
                             'text' => 'Text',
                         ),
                         'default_value' => '',
@@ -263,6 +264,13 @@ if( function_exists('acf_add_local_field_group') ):
                                     'value' => 'photo',
                                 ),
                             ),
+                            array(
+                                array(
+                                    'field' => 'field_637e271af8dd7',
+                                    'operator' => '==',
+                                    'value' => 'cover',
+                                ),
+                            ),
                         ),
                         'wrapper' => array(
                             'width' => '',
@@ -291,7 +299,15 @@ if( function_exists('acf_add_local_field_group') ):
                         'type' => 'color_picker',
                         'instructions' => '',
                         'required' => 0,
-                        'conditional_logic' => 0,
+                        'conditional_logic' => array(
+                            array(
+                                array(
+                                    'field' => 'field_637e271af8dd7',
+                                    'operator' => '!=',
+                                    'value' => 'cover',
+                                ),
+                            ),
+                        ),
                         'wrapper' => array(
                             'width' => '50',
                             'class' => '',
@@ -455,6 +471,13 @@ if( function_exists('acf_add_local_field_group') ):
                                     'value' => 'Photo',
                                 ),
                             ),
+                            array(
+                                array(
+                                    'field' => 'field_637e271af8dd7',
+                                    'operator' => '==',
+                                    'value' => 'cover',
+                                ),
+                            ),
                         ),
                         'wrapper' => array(
                             'width' => '',
@@ -473,6 +496,34 @@ if( function_exists('acf_add_local_field_group') ):
                         'preview_size' => 'medium',
                         'parent_repeater' => 'field_637e2751859e3',
                     ),
+                    array(
+                        'key' => 'field_6421e2d9e4b1a',
+                        'label' => 'Cover Opacity Percentage',
+                        'name' => 'cover_opacity_percentage',
+                        'aria-label' => '',
+                        'type' => 'number',
+                        'instructions' => '',
+                        'required' => 0,                            
+                        'conditional_logic' => array(
+                            array(
+                                'field' => 'field_637e271af8dd7',
+                                'operator' => '==',
+                                'value' => 'cover',
+                            ),
+                        ),
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'default_value' => 50,
+                        'min' => 0,
+                        'max' => 100,
+                        'placeholder' => '',
+                        'step' => 1,
+                        'prepend' => '',
+                        'append' => '%',
+                        ),
                     array(
                         'key' => 'field_637e3c2345cbe',
                         'label' => 'Icon Style',

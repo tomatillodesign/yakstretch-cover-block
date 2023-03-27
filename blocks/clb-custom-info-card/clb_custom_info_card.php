@@ -53,7 +53,7 @@ $card_buttons = $card_group_settings['td_info_cards_include_button'];
 if( $card_buttons ) { $class_name .= ' clb-info-cards-include-buttons'; } else { $class_name .= ' clb-info-cards-no-buttons'; }
 
 // photo settings only
-if( $card_type == 'photo' ) {
+if( $card_type == 'photo' || $card_type == 'cover' ) {
     $image_aspect_ratio = $card_group_settings['td_info_cards_aspect_ratio'];
     $class_name .= ' clb-info-cards-aspect-ratio-' . $image_aspect_ratio;
 }
@@ -216,7 +216,7 @@ if( have_rows('td_info_cards_repeater') ) {
 
         $card_image_id = get_sub_field('card_photo');
         $size = 'large';
-        if( $card_image_id && $card_type == 'photo' ) {
+        if( ($card_image_id && $card_type == 'photo') || ($card_image_id && $card_type == 'cover') ) {
             $card_image_to_publish = '<div class="clb-single-info-card-image-wrapper">' . wp_get_attachment_image( $card_image_id, $size ) . '</div>';
         }
 
@@ -238,6 +238,21 @@ if( have_rows('td_info_cards_repeater') ) {
                                 </div>'
                                 . $collapsible_markup
                                 . '</div>';
+
+        } elseif ( $card_type == 'cover' ) {
+
+            $cover_opacity_percentage = get_sub_field('cover_opacity_percentage');
+            $cop_num = intval($cover_opacity_percentage) / 100;
+
+            $block_to_publish .= '<div class="clb-info-card-outer-wrapper">
+                                <div class="clb-single-info-card-wrapper' . $single_card_custom_classes . '" ' . $card_background_color_style . ' data-card-opacity="' . $cover_opacity_percentage . '">
+                                <div class="clb-cover-layer" style="opacity: ' . $cop_num . ';"></div>
+                                ' . $card_image_to_publish . '
+                                    <div class="clb-single-info-card-body-wrapper">
+                                    ' . $card_heading_to_publish . $card_subheading_to_publish . $card_description_to_publish . '
+                                    </div>
+                                ' . $card_button_to_publish . '
+                            </div>' . $collapsible_markup . '</div>';
 
         } else {
 
