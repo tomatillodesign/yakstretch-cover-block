@@ -221,6 +221,10 @@ button.clb-single-info-card-cta-button {
     z-index: 10;
 }
 
+.clb-info-card-type-cover .clb-single-info-card-image-wrapper img {
+    border-radius: var(--ironwood-border-radius);
+}
+
 .clb-info-card-type-cover .clb-single-info-card-wrapper .clb-single-info-card-body-wrapper {
     position: absolute;
     top: 0;
@@ -244,6 +248,10 @@ button.clb-single-info-card-cta-button {
 .clb-info-card-type-cover .clb-single-info-card-wrapper .clb-single-info-card-subheading,
 .clb-info-card-type-cover .clb-single-info-card-wrapper h3.clb-single-info-card-heading a {
     color: var(--ironwood-white);
+}
+
+.clb-info-card-type-cover .clb-single-info-card-wrapper .clb-single-info-card-subheading {
+    text-transform: none;
 }
 
 .clb-info-card-type-cover .clb-single-info-card-wrapper .clb-single-info-card-button-wrapper button.clb-single-info-card-cta-button {
