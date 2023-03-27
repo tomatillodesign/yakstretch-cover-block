@@ -278,6 +278,14 @@ button.clb-single-info-card-cta-button {
     height: 100%;
 }
 
+.clb-info-card-type-cover .clb-single-info-card-cta-button a {
+	color: var(--ironwood-white);
+}
+
+.clb-info-card-type-cover .clb-single-info-card-subheading {
+	line-height: 1.4;
+}
+
 /* ------------------------- */
 
 
