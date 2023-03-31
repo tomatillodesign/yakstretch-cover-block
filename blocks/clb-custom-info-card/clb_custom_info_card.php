@@ -258,7 +258,7 @@ if( have_rows('td_info_cards_repeater') ) {
 
             $block_to_publish .= '<div class="clb-info-card-outer-wrapper">
                                     <div class="clb-single-info-card-wrapper' . $single_card_custom_classes . '" ' . $card_background_color_style . '>
-                                    ' . $card_link_href . $card_image_to_publish . $card_icon_to_publish . $card_link_closing . '
+                                    ' . $card_link_href . $card_video . $card_image_to_publish . $card_icon_to_publish . $card_link_closing . '
                                     <div class="clb-single-info-card-body-wrapper">
                                     ' . $card_heading_to_publish . $card_subheading_to_publish . $card_description_to_publish . $card_button_to_publish . '
                                     </div>
