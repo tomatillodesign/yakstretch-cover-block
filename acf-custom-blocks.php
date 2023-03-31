@@ -4,7 +4,7 @@ Plugin Name: Tomatillo Design ~ Custom Info Card
 Description: Create custom blocks and run all of your code here. Requires Advanced Custom Fields PRO.
 Author: Chris Liu-Beers, Tomatillo Design
 Author URI: http://www.tomatillodesign.com
-Version: 2.3
+Version: 2.4
 License: GPL v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 */
@@ -181,6 +181,7 @@ if( function_exists('acf_add_local_field_group') ):
                             'icon' => 'Icon',
                             'photo' => 'Photo',
                             'cover' => 'Cover',
+                            'video' => 'Video',
                             'text' => 'Text',
                         ),
                         'default_value' => '',
@@ -494,6 +495,32 @@ if( function_exists('acf_add_local_field_group') ):
                         'max_size' => '',
                         'mime_types' => '',
                         'preview_size' => 'medium',
+                        'parent_repeater' => 'field_637e2751859e3',
+                    ),
+                    array(
+                        'key' => 'field_637e3bf848acb',
+                        'label' => 'Video',
+                        'name' => 'card_video',
+                        'aria-label' => '',
+                        'type' => 'oembed',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => array(
+                            array(
+                                array(
+                                    'field' => 'field_637e271af8dd7',
+                                    'operator' => '==',
+                                    'value' => 'Video',
+                                ),
+                            ),
+                        ),
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'width' => '',
+			            'height' => '',
                         'parent_repeater' => 'field_637e2751859e3',
                     ),
                     array(
@@ -905,7 +932,7 @@ function clb_hex2hsl_020582308($hexstr) {
      * @return  Array           The RGB representation
      */
     function hslToRgb2222023411($h, $s, $l){
-        $hsl = degPercPercToHsl($h, $s, $l);
+        $hsl = degPercPercToHsl616519615351($h, $s, $l);
         $h = $hsl['h'];
         $s = $hsl['s'];
         $l = $hsl['l'];
@@ -1086,5 +1113,33 @@ function lumdiff2222023411($R1,$G1,$B1,$R2,$G2,$B2){
     }
 }
 
+
+
+
+    /**
+     * Input: HSL in format Deg, Perc, Perc
+     * Output: An array containing HSL in ranges 0-1
+     *
+     * Divides $h by 60, and $s and $l by 100.
+     *
+     * hslToRgb calls this by default.
+    */
+    function degPercPercToHsl616519615351($h, $s, $l) {
+        //convert h, s, and l back to the 0-1 range
+
+        //convert the hue's 360 degrees in a circle to 1
+        $h /= 360;
+
+        //convert the saturation and lightness to the 0-1
+        //range by multiplying by 100
+        $s /= 100;
+        $l /= 100;
+
+        $hsl['h'] =  $h;
+        $hsl['s'] = $s;
+        $hsl['l'] = $l;
+
+        return $hsl;
+    }
 
 

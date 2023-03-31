@@ -159,6 +159,7 @@ if( have_rows('td_info_cards_repeater') ) {
         $modal_ref = null;
         $card_button_to_publish = null;
         $single_card_custom_classes = null;
+        $card_video = null;
 
         $card_action = get_sub_field('card_action');
         if( $card_action == 'modal' ) {
@@ -190,6 +191,32 @@ if( have_rows('td_info_cards_repeater') ) {
             if( get_sub_field('card_icon') ) {
                 $card_icon_to_publish .= '<div class="clb-single-info-card-icon-wrapper"><i class="' . $card_icon_type . ' ' . $card_icon_style . ' ' . $card_icon . ' ' . $icon_size . '"></i></div>';
             }
+        }
+
+        if( $card_type == 'video' ) {
+            $card_video = get_sub_field('card_video');
+            $card_video = '<div class="clb-card-video-wrapper embed-container">' . $card_video . '</div>
+                <style>
+                .embed-container { 
+                    position: relative; 
+                    padding-bottom: 56.25%;
+                    overflow: hidden;
+                    max-width: 100%;
+                    height: auto;
+                } 
+            
+                .embed-container iframe,
+                .embed-container object,
+                .embed-container embed { 
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-top-left-radius: var(--ironwood-border-radius);
+                    border-top-right-radius: var(--ironwood-border-radius);
+                }
+            </style>';
         }
         
         $card_heading = get_sub_field('card_heading');
@@ -259,7 +286,7 @@ if( have_rows('td_info_cards_repeater') ) {
             $block_to_publish .= '<div class="clb-info-card-outer-wrapper">
                                 <div class="clb-single-info-card-wrapper' . $single_card_custom_classes . '" ' . $card_background_color_style . '>
                                 <div class="clb-single-info-card-button-flex-wrapper">
-                                    ' . $card_link_href . $card_image_to_publish . $card_icon_to_publish . $card_link_closing . '
+                                    ' . $card_video . $card_link_href . $card_image_to_publish . $card_icon_to_publish . $card_link_closing . '
                                     <div class="clb-single-info-card-body-wrapper">
                                     ' . $card_heading_to_publish . $card_subheading_to_publish . $card_description_to_publish . '
                                     </div>
