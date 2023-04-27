@@ -165,12 +165,12 @@ if( have_rows('td_info_cards_repeater') ) {
         if( $card_action == 'modal' ) {
             $card_is_modal = true;
             $modal_ref = uniqid() . rand(1000, 100000);
-            $card_link_href = '<a href="#ironwood-modal-' . $modal_ref . '" data-bs-toggle="modal" data-bs-target="#ironwood-modal-' . $modal_ref . '">';
+            $card_link_href = '<a href="#ironwood-modal-' . $modal_ref . '" data-bs-toggle="modal" data-toggle="modal" data-bs-target="#ironwood-modal-' . $modal_ref . '">';
             $card_link_closing = '</a>';
         } elseif( $card_action == 'collapse' ) {
             $card_is_collapse = true;
             $modal_ref = uniqid() . rand(1000, 100000);
-            $card_link_href = '<a href="#ironwood-collapse-' . $modal_ref . '" data-bs-toggle="collapse" data-bs-target="#ironwood-collapse-' . $modal_ref . '" onclick="event.preventDefault(); document.getElementById(\'ironwood-collapse-' . $modal_ref . '\').classList.toggle(\'collapsed\');">';
+            $card_link_href = '<a href="#ironwood-collapse-' . $modal_ref . '" data-bs-toggle="collapse" data-toggle="collapse" data-bs-target="#ironwood-collapse-' . $modal_ref . '" onclick="event.preventDefault(); document.getElementById(\'ironwood-collapse-' . $modal_ref . '\').classList.toggle(\'collapsed\');">';
             $card_link_closing = '</a>';
             $single_card_custom_classes .= ' clb-info-card-is-collapse';
         } elseif( $card_action == 'default' ) {
@@ -305,13 +305,13 @@ if( have_rows('td_info_cards_repeater') ) {
                                     <div class="modal-content">
                                     <div class="modal-header">
                                         <h4 class="modal-title clb-ironwood-modal-title" id="ironwood-modal-' . $modal_ref . '">' . $card_heading . '</h4>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close">x</button>
                                     </div>
                                     <div class="modal-body">
                                         ' . $modal_description_to_publish . '
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-dismiss="modal">Close</button>
                                     </div>
                                     </div>
                                 </div>
