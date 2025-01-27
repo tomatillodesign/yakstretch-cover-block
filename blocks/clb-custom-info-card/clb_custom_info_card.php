@@ -82,7 +82,7 @@ if( !$theme_primary_color ) {
 // background colors
 $card_background_color_style = null;
 $card_background_color = $card_group_settings['td_info_cards_card_background'];
-$card_background_color_array_sum = array_sum($card_background_color);
+if( $card_background_color ) { $card_background_color_array_sum = array_sum($card_background_color); }
 
 if( $card_background_color_array_sum > 0 ) {
     $card_background_color_string = 'rgba(' . $card_background_color['red'] . ',' . $card_background_color['green'] . ',' . $card_background_color['blue'] . ',' . $card_background_color['alpha'] . ')';
@@ -107,7 +107,7 @@ if( $card_background_color_array_sum > 0 ) {
 
 $button_background_color_style = null;
 $button_background_color = $card_group_settings['td_info_cards_button_background'];
-$button_background_color_array_sum = array_sum($button_background_color);
+if( $button_background_color ) { $button_background_color_array_sum = array_sum($button_background_color); }
 if( $button_background_color_array_sum > 0 ) { 
     $button_background_color_string = 'rgba(' . $button_background_color['red'] . ',' . $button_background_color['green'] . ',' . $button_background_color['blue'] . ',' . $button_background_color['alpha'] . ')';
     $button_background_color_style = ' style="background-color: ' . $button_background_color_string . ';"';
