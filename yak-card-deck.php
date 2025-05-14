@@ -5,6 +5,8 @@ Description: Custom block for displaying cards in a grid/deck layout.
 Plugin URI: https://github.com/tomatillodesign/yak-card-deck
 Author: Tomatillo Design
 Version: 1.0.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 
 
