@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Tomatillo Design ~ Yak Card Deck
-Description: Custom block for displaying cards in a grid/deck layout.
+Plugin Name: Tomatillo Design ~ Yakstretch Cover Block
+Description: Custom block for displaying content on top of a rotating slideshow. Great for "hero" sections.
 Plugin URI: https://github.com/tomatillodesign/yak-card-deck
 Author: Tomatillo Design
 Version: 1.0.0
