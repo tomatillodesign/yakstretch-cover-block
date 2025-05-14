@@ -1,12 +1,10 @@
 <?php
 /*
-Plugin Name: Tomatillo Design ~ Custom Info Card
-Description: Create custom blocks and run all of your code here. Requires Advanced Custom Fields PRO.
-Author: Chris Liu-Beers, Tomatillo Design
-Author URI: http://www.tomatillodesign.com
-Version: 2.5.0
-License: GPL v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+Plugin Name: Yak Card Deck
+Description: Custom block for displaying cards in a grid/deck layout.
+Plugin URI: https://github.com/tomatillodesign/yak-card-deck
+Author: Tomatillo Design
+Version: 1.0.0
 */
 
 
