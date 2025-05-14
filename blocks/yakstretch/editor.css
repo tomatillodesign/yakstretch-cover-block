@@ -1,0 +1,64 @@
+@layer yak-editor {
+
+	/* Remove Gutenberg/ACF background interference */
+	.acf-block-preview,
+	.acf-block-body,
+	.wp-block-yak-yakstretch-cover {
+		background: transparent !important;
+	}
+
+	.wp-block[data-type="yak/yakstretch-cover"] {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		min-height: 300px;
+		padding: 2rem;
+		color: #fff;
+		border: 1px dashed rgba(0, 0, 0, 0.1);
+		background: none !important;
+	}
+
+	/* NEW: internal background layer added via editor.js */
+	.yakstretch-editor-bg {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		pointer-events: none;
+	}
+
+	/* Yakstretch overlay div should remain behind content */
+	.wp-block[data-type="yak/yakstretch-cover"] .yakstretch-overlay {
+		z-index: 1;
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+
+	/* Yakstretch content */
+	.wp-block[data-type="yak/yakstretch-cover"] .yakstretch-content {
+		position: relative;
+		z-index: 2;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding: 1rem;
+		min-height: inherit;
+	}
+
+	/* Placeholder message if gallery is empty */
+	.wp-block[data-type="yak/yakstretch-cover"][data-has-gallery="0"] .yakstretch-content::before {
+		content: "Add images to the Gallery field in the block sidebar.";
+		color: #666;
+		font-size: 0.875rem;
+		padding: 1rem;
+	}
+}
