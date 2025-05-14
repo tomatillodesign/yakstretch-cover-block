@@ -5,8 +5,7 @@
  * Renders a rotating background image block with overlay and InnerBlocks content.
  */
 
- $is_preview = is_admin() && function_exists( 'acf_is_block_editor' ) && acf_is_block_editor();
-
+$is_preview = is_admin() && function_exists( 'acf_is_block_editor' ) && acf_is_block_editor();
 
 // Unique block ID and class
 $block_id = 'yakstretch-' . $block['id'];
@@ -80,10 +79,6 @@ if ( empty($images) ) {
 	     data-fade='<?php echo esc_attr( get_field('fade') ?: 1000 ); ?>'
 	     data-randomize='<?php echo get_field('randomize') ? '1' : '0'; ?>'>
 	</div>
-
-    <?php if ( $is_preview ) : ?>
-        <div class="yakstretch-editor-bg"></div>
-    <?php endif; ?>
 
 	<div class="yakstretch-overlay
 	            yakstretch-overlay-<?php echo esc_attr($overlay_style); ?>

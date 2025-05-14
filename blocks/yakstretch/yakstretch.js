@@ -3,7 +3,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 	const blocks = document.querySelectorAll('[data-yakstretch="1"]');
-    console.log(blocks);
 
 	blocks.forEach(block => {
 		const rotator = block.querySelector('.yakstretch-image-rotator');
@@ -30,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			el.style.left = 0;
 			el.style.right = 0;
 			el.style.bottom = 0;
+			el.style.willChange = 'opacity';
 			el.style.backgroundSize = 'cover';
 			el.style.backgroundPosition = 'center';
 			el.style.transition = `opacity ${fade}ms ease`;
