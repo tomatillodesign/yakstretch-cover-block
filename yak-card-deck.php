@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Yak Card Deck
+Plugin Name: Tomatillo Design ~ Yak Card Deck
 Description: Custom block for displaying cards in a grid/deck layout.
 Plugin URI: https://github.com/tomatillodesign/yak-card-deck
 Author: Tomatillo Design
@@ -33,7 +33,7 @@ function custom_plugin_check_acf_pro() {
 
 // Display an admin notice
 function custom_plugin_acf_pro_admin_notice() {
-    echo '<div class="notice notice-error"><p><strong>Tomatillo Design ~ Custom Info Card:</strong> This plugin requires <a href="https://www.advancedcustomfields.com/pro/" target="_blank">ACF PRO</a> to be installed and activated.</p></div>';
+    echo '<div class="notice notice-error"><p><strong>Tomatillo Design ~ Yak Card Deck:</strong> This plugin requires <a href="https://www.advancedcustomfields.com/pro/" target="_blank">ACF PRO</a> to be installed and activated.</p></div>';
 }
 
 // Run the check on activation

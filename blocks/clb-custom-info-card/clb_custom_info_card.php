@@ -1,6 +1,6 @@
 <?php
 /**
- * Testimonial Block Template.
+ * Yak Cards Template.
  *
  * @param   array $block The block settings and attributes.
  * @param   string $content The block inner HTML (empty).
@@ -94,10 +94,10 @@ if( $card_background_color_array_sum > 0 ) {
     
     if( $lumdiff_to_black >= 5 ) {
         $class_name .= ' clb-info-cards-override-card-foreground-color clb-foreground-dark';
-        $card_collection_styles .= '--ironwood-card-body-color: var(--ironwood-black, #222);';
+        $card_collection_styles .= '--yak-card-body-color: var(--yak-color-black, #222);';
     } elseif ( $lumdiff_to_white >= 5 ) {
         $class_name .= ' clb-info-cards-override-card-foreground-color clb-foreground-light';
-        $card_collection_styles .= '--ironwood-card-body-color: var(--ironwood-white, #fff);';
+        $card_collection_styles .= '--yak-card-body-color: var(--yak-color-white, #fff);';
     }
     
     $card_data .= ' data-clb-card-lumdiff-to-black="' . $lumdiff_to_black . '"';
@@ -118,10 +118,10 @@ if( $button_background_color_array_sum > 0 ) {
 
     if( $button_lumdiff_to_black >= 5 ) {
         $class_name .= ' clb-info-cards-override-card-button-foreground-color clb-button-foreground-dark';
-        $card_collection_styles .= '--ironwood-card-button-text-color: var(--ironwood-black, #222);';
+        $card_collection_styles .= '--yak-card-button-text-color: var(--yak-color-black, #222);';
     } elseif ( $button_lumdiff_to_white >= 5 ) {
         $class_name .= ' clb-info-cards-override-card-button-foreground-color clb-button-foreground-light';
-        $card_collection_styles .= '--ironwood-card-button-text-color: var(--ironwood-white, #fff);';
+        $card_collection_styles .= '--yak-card-button-text-color: var(--yak-color-white, #fff);';
     }
 
     $card_data .= ' data-clb-card-button-lumdiff-to-black="' . $button_lumdiff_to_black . '"';
@@ -165,12 +165,12 @@ if( have_rows('td_info_cards_repeater') ) {
         if( $card_action == 'modal' ) {
             $card_is_modal = true;
             $modal_ref = uniqid() . rand(1000, 100000);
-            $card_link_href = '<a href="#ironwood-modal-' . $modal_ref . '" data-bs-toggle="modal" data-toggle="modal" data-bs-target="#ironwood-modal-' . $modal_ref . '">';
+            $card_link_href = '<a href="#yak-modal-' . $modal_ref . '" data-bs-toggle="modal" data-toggle="modal" data-bs-target="#yak-modal-' . $modal_ref . '">';
             $card_link_closing = '</a>';
         } elseif( $card_action == 'collapse' ) {
             $card_is_collapse = true;
             $modal_ref = uniqid() . rand(1000, 100000);
-            $card_link_href = '<a href="#ironwood-collapse-' . $modal_ref . '" data-bs-toggle="collapse" data-toggle="collapse" data-bs-target="#ironwood-collapse-' . $modal_ref . '" onclick="event.preventDefault(); document.getElementById(\'ironwood-collapse-' . $modal_ref . '\').classList.toggle(\'collapsed\');">';
+            $card_link_href = '<a href="#yak-collapse-' . $modal_ref . '" data-bs-toggle="collapse" data-toggle="collapse" data-bs-target="#yak-collapse-' . $modal_ref . '" onclick="event.preventDefault(); document.getElementById(\'yak-collapse-' . $modal_ref . '\').classList.toggle(\'collapsed\');">';
             $card_link_closing = '</a>';
             $single_card_custom_classes .= ' clb-info-card-is-collapse';
         } elseif( $card_action == 'default' ) {
@@ -213,8 +213,8 @@ if( have_rows('td_info_cards_repeater') ) {
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    border-top-left-radius: var(--ironwood-border-radius);
-                    border-top-right-radius: var(--ironwood-border-radius);
+                    border-top-left-radius: var(--yak-border-radius);
+                    border-top-right-radius: var(--yak-border-radius);
                 }
             </style>';
         }
@@ -230,7 +230,7 @@ if( have_rows('td_info_cards_repeater') ) {
         // create collapsible markup
         $collapsible_markup = null;
         if( $card_is_collapse ) {
-            $collapsible_markup = '<div id="ironwood-collapse-' . $modal_ref . '" class="clb-collapsible-wrapper collapsed">' . $card_description . '</div>';
+            $collapsible_markup = '<div id="yak-collapse-' . $modal_ref . '" class="clb-collapsible-wrapper collapsed">' . $card_description . '</div>';
         }
 
         if( ($card_description && $card_descriptions) || ($card_description && $card_is_modal) ) {
@@ -300,11 +300,11 @@ if( have_rows('td_info_cards_repeater') ) {
 
         if( $card_is_modal ) {
         $modals_to_publish .= '<!-- Modal -->
-                                <div class="modal fade clb-ironwood-modal" id="ironwood-modal-' . $modal_ref . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade clb-yak-modal" id="yak-modal-' . $modal_ref . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title clb-ironwood-modal-title" id="ironwood-modal-' . $modal_ref . '">' . $card_heading . '</h4>
+                                        <h4 class="modal-title clb-yak-modal-title" id="yak-modal-' . $modal_ref . '">' . $card_heading . '</h4>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close">x</button>
                                     </div>
                                     <div class="modal-body">
