@@ -75,7 +75,7 @@ if ( $is_preview ) {
      class="<?php echo esc_attr($wrapper_classes); ?>"
      data-yakstretch="1"
      data-has-gallery="<?php echo $has_images ? '1' : '0'; ?>"
-     <?php echo $style_attr; ?>>
+	 >
 
 	<?php
 	$image_urls = [];
