@@ -11,6 +11,26 @@ document.addEventListener('DOMContentLoaded', () => {
 		const imageUrls = JSON.parse(rotator.dataset.images || '[]');
 		if (imageUrls.length < 1) return;
 
+		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		if (prefersReducedMotion) {
+			const bg = document.createElement('div');
+			bg.className = 'yakstretch-bg';
+			bg.style.position = 'absolute';
+			bg.style.top = 0;
+			bg.style.left = 0;
+			bg.style.right = 0;
+			bg.style.bottom = 0;
+			bg.style.backgroundImage = `url('${imageUrls[0]}')`;
+			bg.style.backgroundSize = 'cover';
+			bg.style.backgroundPosition = 'center';
+			bg.style.opacity = '1';
+			bg.style.transition = 'none';
+
+			rotator.appendChild(bg);
+			return;
+		}	
+
 		const delay = parseInt(rotator.dataset.delay, 10) || 6000;
 		const fade = parseInt(rotator.dataset.fade, 10) || 1000;
 		const randomize = rotator.dataset.randomize === '1';

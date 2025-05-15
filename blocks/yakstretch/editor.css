@@ -30,6 +30,8 @@
 		background-size: cover;
 		background-position: center;
 		pointer-events: none;
+		opacity: 1;
+		transition: opacity 0.3s ease;
 	}
 
 	/* Yakstretch overlay div should remain behind content */
@@ -62,8 +64,24 @@
 		padding: 1rem;
 	}
 
-    .block-editor-block-list__layout .yakstretch-overlay {
-        z-index: 0
-    }
-    
+	/* Force overlay to correct z-index in editor */
+	.block-editor-block-list__layout .yakstretch-overlay {
+		z-index: 1 !important;
+	}
+
+	/* Default gray background in editor if no images */
+	.editor-styles-wrapper .yakstretch-cover-block[data-has-gallery="0"] {
+		background-color: #555 !important;
+		color: white;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	/* Remove dashed border if gallery is populated */
+	.wp-block[data-type="yak/yakstretch-cover"][data-has-gallery="1"] {
+		border: none;
+	}
+
 }
