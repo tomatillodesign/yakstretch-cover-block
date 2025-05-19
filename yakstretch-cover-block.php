@@ -21,28 +21,33 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 //
 
 
-if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
 }
 
-// Check if ACF PRO is active
-function custom_plugin_check_acf_pro_yakstretch() {
-    if (!class_exists('ACF') || !function_exists('acf_get_setting') || !acf_get_setting('pro')) {
-        add_action('admin_notices', 'custom_plugin_acf_pro_admin_notice_yakstretch');
-        deactivate_plugins(plugin_basename(__FILE__)); // Deactivate the plugin
-    }
+// Gracefully check if ACF PRO is active
+function yakstretch_check_acf_pro_dependency() {
+	if ( ! class_exists( 'ACF' ) || ! function_exists( 'acf_get_setting' ) || ! acf_get_setting( 'pro' ) ) {
+		add_action( 'admin_notices', 'yakstretch_show_acf_pro_missing_notice' );
+
+		// Only deactivate if user has permission and is in admin
+		if ( is_admin() && current_user_can( 'activate_plugins' ) ) {
+			deactivate_plugins( plugin_basename( __FILE__ ) );
+		}
+	}
 }
 
-// Display an admin notice
-function custom_plugin_acf_pro_admin_notice_yakstretch() {
-    echo '<div class="notice notice-error"><p><strong>Tomatillo Design ~ Yak Card Deck:</strong> This plugin requires <a href="https://www.advancedcustomfields.com/pro/" target="_blank">ACF PRO</a> to be installed and activated.</p></div>';
+// Show admin notice about missing ACF PRO
+function yakstretch_show_acf_pro_missing_notice() {
+	echo '<div class="notice notice-error"><p><strong>Yak Stretch Cover Block:</strong> This plugin requires <a href="https://www.advancedcustomfields.com/pro/" target="_blank">ACF PRO</a> to be installed and activated. The plugin has been deactivated.</p></div>';
 }
 
-// Run the check on activation
-register_activation_hook(__FILE__, 'custom_plugin_check_acf_pro_yakstretch');
+// Run dependency check on plugin load
+add_action( 'admin_init', 'yakstretch_check_acf_pro_dependency' );
 
-// Run the check on admin init
-add_action('admin_init', 'custom_plugin_check_acf_pro');
+// Also check at activation
+register_activation_hook( __FILE__, 'yakstretch_check_acf_pro_dependency' );
+
 
 add_action( 'init', function() {
 	register_block_type( __DIR__ . '/blocks/yakstretch/block.json' );
