@@ -13,7 +13,10 @@
     /* Background image rotator container */
     .yakstretch-image-rotator {
         position: absolute;
-        inset: 0;
+        top: 0;
+        bottom: 0;
+        background-size: cover;
+        background-position: center;
         z-index: -2;
         pointer-events: none;
     }
@@ -37,7 +40,16 @@
         z-index: -1;
         pointer-events: none;
     }
-    
+
+    .yakstretch-overlay-solid-left {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+    }
+
     /* Flat overlay style via custom property */
     .yakstretch-overlay-flat {
         background-color: var(--yak-overlay-color);

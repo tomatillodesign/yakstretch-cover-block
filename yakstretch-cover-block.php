@@ -170,11 +170,78 @@ add_action( 'acf/init', function() {
 				'key' => 'field_yakstretch_overlay_opacity',
 				'label' => 'Overlay Opacity %',
 				'name' => 'overlay_opacity',
-				'type' => 'number',
+				'type' => 'range',
+				'instructions' => '0% is fully transparent, 100% is solid',
+				'append' => '%',
 				'default_value' => 50,
 				'min' => 0,
 				'max' => 100,
 				'step' => 1,
+			],
+			[
+				'key' => 'field_yakstretch_image_padding_left',
+				'label' => 'Image Padding Left',
+				'name' => 'image_padding_left',
+				'type' => 'range',
+				'instructions' => 'How much space to leave on the left side of the image. 100% = fully pushed right, 0% = flush left.',
+				'append' => '%',
+				'default_value' => 0,
+				'min' => 0,
+				'max' => 100,
+				'step' => 1,
+				'conditional_logic' => [
+					[
+						[
+							'field' => 'field_yakstretch_position',
+							'operator' => '==',
+							'value' => 'top-left',
+						],
+						[
+							'field' => 'field_yakstretch_overlay_style',
+							'operator' => '==',
+							'value' => 'gradient',
+						],
+						[
+							'field' => 'field_yakstretch_overlay_opacity',
+							'operator' => '==',
+							'value' => '100',
+						],
+					],
+					[
+						[
+							'field' => 'field_yakstretch_position',
+							'operator' => '==',
+							'value' => 'center-left',
+						],
+						[
+							'field' => 'field_yakstretch_overlay_style',
+							'operator' => '==',
+							'value' => 'gradient',
+						],
+						[
+							'field' => 'field_yakstretch_overlay_opacity',
+							'operator' => '==',
+							'value' => '100',
+						],
+					],
+					[
+						[
+							'field' => 'field_yakstretch_position',
+							'operator' => '==',
+							'value' => 'bottom-left',
+						],
+						[
+							'field' => 'field_yakstretch_overlay_style',
+							'operator' => '==',
+							'value' => 'gradient',
+						],
+						[
+							'field' => 'field_yakstretch_overlay_opacity',
+							'operator' => '==',
+							'value' => '100',
+						],
+					],
+				],
 			],
 			[
 				'key' => 'field_yakstretch_height_desktop',

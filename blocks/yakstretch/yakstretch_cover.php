@@ -30,6 +30,10 @@ $overlay_opacity      = $overlay_opacity_raw / 100;
 $min_height_desktop   = get_field('min_height_desktop') ?: '500px';
 $min_height_mobile    = get_field('min_height_mobile') ?: '300px';
 
+$image_padding_left = (float) get_field('image_padding_left') ?: 0;
+$image_padding_left_unit = $image_padding_left . '%';
+$image_width_unit = $image_padding_left > 0 ? 'calc(100% - ' . $image_padding_left_unit . ')' : '100%';
+
 // CSS class for content placement
 $placement_class = 'yakstretch-content-' . str_replace(' ', '-', strtolower($content_position));
 
@@ -62,12 +66,45 @@ $overlay_rgba = yakstretch_hex_to_rgba_9273614($overlay_hex, $overlay_opacity);
 $dynamic_preview_style = '';
 if ( $is_preview ) {
 	$selector = '#' . $block_id;
-	if ( $first_image_url ) {
-		$dynamic_preview_style = "{$selector} { background-image: url('{$first_image_url}'); background-size: cover; background-position: center; }";
-	} else {
-		$dynamic_preview_style = "{$selector} { background-color: #222; }";
-	}
+	$image_offset = $image_padding_left > 0 ? 'calc(100% - ' . $image_padding_left_unit . ')' : '100%';
+
+	$dynamic_preview_style = "
+		{$selector} {
+			position: relative;
+			background: none;
+		}
+		{$selector} .yakstretch-image-wrapper::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: {$image_padding_left_unit};
+			height: 100%;
+			background-color: {$overlay_rgba};
+			z-index: -1;
+		}
+		{$selector} .yakstretch-image-wrapper {
+			background-image: url('{$first_image_url}');
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-color: transparent;
+			width: 100%;
+			height: 100%;
+			position: relative;
+			overflow: hidden;
+		}
+		{$selector} .yakstretch-image-rotator {
+			width: {$image_offset};
+			height: 100%;
+			position: absolute;
+			top: 0;
+			right: 0;
+			z-index: -2;
+		}
+	";
 }
+
 
 ?>
 
@@ -88,17 +125,33 @@ if ( $is_preview ) {
 	}
 	?>
 
-	<div class="yakstretch-image-rotator"
-	     data-images='<?php echo wp_json_encode( wp_list_pluck( $images, 'url' ) ); ?>'
-	     data-delay='<?php echo esc_attr( get_field('delay') ?: 6000 ); ?>'
-	     data-fade='<?php echo esc_attr( get_field('fade') ?: 1000 ); ?>'
-	     data-randomize='<?php echo get_field('randomize') ? '1' : '0'; ?>'>
+	<div class="yakstretch-image-wrapper">
+		<?php if ( $image_padding_left > 0 ) : ?>
+			<div class="yakstretch-overlay-solid-left"
+				style="left: 0; width: <?php echo esc_attr($image_padding_left_unit); ?>; height: 100%; background-color: <?php echo esc_attr($overlay_rgba); ?>;">
+			</div>
+		<?php endif; ?>
+
+		<div class="yakstretch-image-rotator"
+			style="width: <?php echo esc_attr($image_width_unit); ?>; right: 0;"
+			data-images='<?php echo wp_json_encode(wp_list_pluck($images, 'url')); ?>'
+			data-delay='<?php echo esc_attr(get_field('delay') ?: 6000); ?>'
+			data-fade='<?php echo esc_attr(get_field('fade') ?: 1000); ?>'
+			data-randomize='<?php echo get_field('randomize') ? '1' : '0'; ?>'>
+		</div>
 	</div>
 
-	<div class="yakstretch-overlay
-	            yakstretch-overlay-<?php echo esc_attr($overlay_style); ?>
-	            <?php echo esc_attr($overlay_style === 'gradient' ? $gradient_direction_class : ''); ?>"
-	     style="--yak-overlay-color: <?php echo esc_attr($overlay_rgba); ?>;">
+	<?php
+		$gradient_left_style = '';
+		if ( $image_padding_left > 0 ) {
+			$gradient_left_style = 'left: ' . $image_padding_left_unit . ';';
+		}
+	?>
+
+	<div class="yakstretch-overlay yakstretch-overlay-<?php echo esc_attr($overlay_style); ?>
+		<?php echo esc_attr($gradient_direction_class); ?>"
+		style="--yak-overlay-color: <?php echo esc_attr($overlay_rgba); ?>;
+		<?php echo $gradient_left_style; ?>">
 	</div>
 
 	<div class="yakstretch-content <?php echo esc_attr($placement_class); ?>">
