@@ -5,7 +5,8 @@
  * Renders a rotating background image block with overlay and InnerBlocks content.
  */
 
-$is_preview = is_admin() && function_exists( 'acf_is_block_editor' ) && acf_is_block_editor();
+// $is_preview = is_admin() && function_exists( 'acf_is_block_editor' ) && acf_is_block_editor();
+$is_preview = ! empty( $block['data']['is_preview'] );
 
 // Unique block ID and class
 $block_id = 'yakstretch-' . $block['id'];
@@ -16,6 +17,7 @@ $wrapper_classes = implode(' ', array_filter([
 	'yakstretch-cover-block',
 	$align_class,
 	$custom_class,
+	$is_preview ? 'is-editor-preview' : '',
 ]));
 
 // Fields
@@ -69,6 +71,15 @@ if ( $is_preview ) {
 	$image_offset = $image_padding_left > 0 ? 'calc(100% - ' . $image_padding_left_unit . ')' : '100%';
 
 	$dynamic_preview_style = "
+
+		#{$block_id} .yakstretch-image-wrapper {
+			outline: 2px solid magenta;
+		}
+		#{$block_id} .yakstretch-image-rotator {
+			outline: 2px dashed cyan;
+			background-color: rgba(0, 255, 255, 0.1);
+		}
+
 		{$selector} {
 			position: relative;
 			background: none;

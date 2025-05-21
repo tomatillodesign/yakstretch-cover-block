@@ -41,6 +41,7 @@ function applyYakstretchPreviewBackground(blockEl) {
 	bgDiv.style.backgroundSize = 'cover';
 	bgDiv.style.backgroundPosition = 'center';
 	bgDiv.style.opacity = '1';
+	
 }
 
 
