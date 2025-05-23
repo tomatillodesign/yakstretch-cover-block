@@ -4,7 +4,7 @@ Plugin Name: Tomatillo Design ~ Yakstretch Cover Block
 Description: Custom block for displaying content on top of a rotating slideshow. Great for "hero" sections.
 Plugin URI: https://github.com/tomatillodesign/yak-card-deck
 Author: Tomatillo Design
-Version: 1.0.0
+Version: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -53,16 +53,49 @@ add_action( 'init', function() {
 	register_block_type( __DIR__ . '/blocks/yakstretch/block.json' );
 });
 
-add_action( 'enqueue_block_assets', function() {
-	// Frontend only, enqueue only if block is present
+
+
+// add_action( 'wp_enqueue_scripts', 'yakstretch_enqueue_assets', 20 );
+
+// function yakstretch_enqueue_assets() {
+// 	$deps = [];
+
+// 	if ( wp_script_is( 'tomatillo-avif-swap', 'registered' ) ) {
+// 		$deps[] = 'tomatillo-avif-swap';
+// 	}
+
+// 	if ( has_block( 'yak/yakstretch-cover' ) ) {
+// 		wp_enqueue_script(
+// 			'yakstretch-script',
+// 			plugin_dir_url( __FILE__ ) . 'blocks/yakstretch/yakstretch.js',
+// 			$deps,
+// 			'1.0.0',
+// 			true
+// 		);
+
+// 		wp_enqueue_style(
+// 			'yakstretch-style',
+// 			plugin_dir_url( __FILE__ ) . 'blocks/yakstretch/yakstretch_cover.css',
+// 			[],
+// 			'1.0.0'
+// 		);
+// 	}
+// }
+
+
+
+
+
+wp_register_script(
+	'yakstretch-script',
+	plugin_dir_url( __FILE__ ) . 'blocks/yakstretch/yakstretch.js',
+	wp_script_is( 'tomatillo-avif-swap', 'registered' ) ? [ 'tomatillo-avif-swap' ] : [],
+	'1.0.0',
+	true
+);
+add_action( 'enqueue_block_assets', function () {
 	if ( has_block( 'yak/yakstretch-cover' ) ) {
-		wp_enqueue_script(
-			'yakstretch-script',
-			plugin_dir_url( __FILE__ ) . 'blocks/yakstretch/yakstretch.js',
-			[],
-			'1.0.0',
-			true
-		);
+		wp_enqueue_script( 'yakstretch-script' );
 
 		wp_enqueue_style(
 			'yakstretch-style',
@@ -72,6 +105,8 @@ add_action( 'enqueue_block_assets', function() {
 		);
 	}
 });
+
+
 
 add_action( 'enqueue_block_editor_assets', function() {
 	wp_enqueue_style(
