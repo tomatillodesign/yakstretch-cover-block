@@ -76,7 +76,17 @@ function yakstretchInit(container) {
 	}, delay);
 }
 
-// Run once on DOMContentLoaded
-document.addEventListener('DOMContentLoaded', () => {
-	document.querySelectorAll('[data-yakstretch="1"]').forEach(yakstretchInit);
-});
+
+// YakStretch waits for AVIF to allow/init, or runs standalone
+if (window.tomatilloAvifYakDelay) {
+	window.addEventListener('tomatilloAvifReady', () => {
+		console.log('[YAKSTRETCH] Starting init. First rotator image:', document.querySelector('.yakstretch-image-rotator')?.dataset.images);
+		document.querySelectorAll('[data-yakstretch="1"]').forEach(yakstretchInit);
+	}, { once: true });
+} else {
+	document.addEventListener('DOMContentLoaded', () => {
+		console.log('[YAKSTRETCH] Starting init. First rotator image:', document.querySelector('.yakstretch-image-rotator')?.dataset.images);
+		document.querySelectorAll('[data-yakstretch="1"]').forEach(yakstretchInit);
+	});
+}
+
